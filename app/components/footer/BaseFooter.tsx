@@ -1,7 +1,6 @@
 import { Col, Row } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import Link from 'next/link';
-import { SOCIAL_OPTIONS } from '../../utils/social';
 import FooterLogo from '../about-us/FooterLogo';
 import SocialSharing from '../social/SocialSharing';
 
@@ -15,9 +14,7 @@ export default function LayoutFooter() {
           lg={{ offset: 0, span: 6 }}
           className='footer-social'
         >
-          <SocialSharing
-            onlinePlatforms={SOCIAL_OPTIONS}
-          />
+          <SocialSharing />
           <FooterLogo />
         </Col>
         <Col

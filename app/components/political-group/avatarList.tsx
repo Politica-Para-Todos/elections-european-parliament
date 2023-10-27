@@ -6,16 +6,6 @@ interface AvatarListProp {
 }
 
 export default async function AvatarList({ theme }: AvatarListProp) {
-  // const [hasMounted, setHasMounted] = useState(false);
-
-  // useEffect(() => {
-  //   setHasMounted(true);
-  // }, []);
-
-  // if (!hasMounted) {
-  //   return null;
-  // }
-
   const politicalGroups = await getAllPoliticalGroups();
 
   return (

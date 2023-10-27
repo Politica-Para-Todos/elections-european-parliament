@@ -1,14 +1,14 @@
+import { SOCIAL_OPTIONS } from '../../utils/social';
 import SocialIcon, { OnlinePlatform, OnlinePlatformType } from './SocialIcon';
 
 interface SocialSharingProps {
-  onlinePlatforms: OnlinePlatform[];
   theme?: string;
 }
 
-export default function SocialSharing({ onlinePlatforms, theme }: SocialSharingProps) {
+export default function SocialSharing({ theme }: SocialSharingProps) {
   return (
     <ul className='social-media-list'>
-      {onlinePlatforms.map((op: OnlinePlatform) => (
+      {SOCIAL_OPTIONS.map((op: OnlinePlatform) => (
         <li key={op.type}>
           <a
             href={

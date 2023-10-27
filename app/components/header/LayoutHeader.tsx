@@ -1,7 +1,6 @@
 import { Col, Layout, Menu, Row } from 'antd';
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { SOCIAL_OPTIONS } from '../../utils/social';
 import SocialSharing from '../social/SocialSharing';
 import HeaderLogo from './HeaderLogo';
 
@@ -66,7 +65,7 @@ export function LayoutHeader() {
               >Join us!
               </a>
               <div className='header-social-media'>
-                <SocialSharing onlinePlatforms={SOCIAL_OPTIONS} />
+                <SocialSharing />
               </div>
             </nav>
           </Col>
