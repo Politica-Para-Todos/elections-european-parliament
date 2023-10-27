@@ -3,10 +3,8 @@
 import { Layout } from 'antd';
 import { Inter } from 'next/font/google';
 import React from 'react';
-
-import { usePathname } from 'next/navigation';
 import '../app/styles/index.scss';
-import { LayoutHeader } from './components/header/layoutHeader';
+import { LayoutHeader } from './components/header/LayoutHeader';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,16 +14,12 @@ const inter = Inter({ subsets: ['latin'] })
 // }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const pathName = usePathname();
-
   return (
     <html lang="en">
       <body className={inter.className}>
         <Layout>
-          {/* <StyledComponentsRegistry> */}
           <LayoutHeader />
           {children}
-          {/* </StyledComponentsRegistry> */}
         </Layout>
       </body>
     </html>
