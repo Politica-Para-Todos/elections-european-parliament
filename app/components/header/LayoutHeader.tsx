@@ -37,17 +37,17 @@ export function LayoutHeader() {
             <nav className='header__desktop-menu'>
               <Menu mode='horizontal'>
                 <Menu.Item key={1}>
-                  <Link href='/member-state' style={{ scrollBehavior: 'smooth' }} onClick={closeDrawer}>
+                  <Link href='/member-states' style={{ scrollBehavior: 'smooth' }} onClick={closeDrawer}>
                     Member States
                   </Link>
                 </Menu.Item>
                 <Menu.Item key={2}>
-                  <Link href='/party' onClick={closeDrawer}>
+                  <Link href='/parties' onClick={closeDrawer}>
                     Parties
                   </Link>
                 </Menu.Item>
                 <Menu.Item key={3}>
-                  <Link href='/candidate' onClick={closeDrawer}>
+                  <Link href='/candidates' onClick={closeDrawer}>
                     Candidates
                   </Link>
                 </Menu.Item>

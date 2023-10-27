@@ -19,5 +19,5 @@ export async function generateStaticParams(): Promise<string[]> {
 }
 
 async function getAllMemberStates(): Promise<string[]> {
-  return Promise.resolve<string[]>(['member-state-1', 'member-state-2'])
+  return Promise.resolve(['member-state-1', 'member-state-2'])
 }
