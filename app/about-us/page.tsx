@@ -1,7 +1,14 @@
 'use client';
 
+import { Divider } from 'antd';
+import AboutUsHeaderImage from '../components/about-us/AboutUsHeaderImage';
+
 export default function AboutUsPage() {
   return (
+    <>
+      <AboutUsHeaderImage />
+      <Divider />
+    </>
     // <Layout>
     //   <Layout.Content className="about-us-section">
     //     {/* <AboutUsHeaderImage />
@@ -12,9 +19,6 @@ export default function AboutUsPage() {
     //   </Layout.Content>
     //   {/* <AboutUsFooter /> */}
     // </Layout >
-    <section>
-      <h1>LOL</h1>
-    </section>
   )
 }
 // <MetaTags
