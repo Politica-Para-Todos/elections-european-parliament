@@ -1,5 +1,5 @@
 import { PoliticalGroup } from '../../political-group/[acronym]/political-group-dto';
-import RoundAvatar from './avatar';
+import RoundAvatar from './Avatar';
 
 interface AvatarListProp {
   theme: string

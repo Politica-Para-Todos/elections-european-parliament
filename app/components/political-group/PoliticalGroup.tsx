@@ -1,7 +1,7 @@
 'use client';
 
 import { Col, Row } from "antd";
-import AvatarList from './avatarList';
+import AvatarList from './AvatarList';
 
 export default function HomePoliticalGroups() {
   return (
