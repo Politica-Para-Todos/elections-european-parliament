@@ -1,4 +1,4 @@
-import { PoliticalGroup } from '../../political-group/[acronym]/political-group-dto';
+import { PoliticalGroup } from '../../political-groups/[acronym]/political-group-dto';
 import RoundAvatar from './Avatar';
 
 interface AvatarListProp {
@@ -29,8 +29,8 @@ export async function getAllPoliticalGroups(): Promise<PoliticalGroup[]> {
   //   }))
   return Promise.resolve([{
     id: 1,
-    acronym: 'acronym',
-    name: 'name',
-    logoUrl: ''
+    acronym: 'test-acronym',
+    name: 'test-name',
+    logoUrl: 'test-url'
   }])
 }
