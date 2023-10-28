@@ -1,5 +1,3 @@
-'use client';
-
 import { Divider } from 'antd';
 import AboutUsHeaderImage from '../components/about-us/AboutUsHeaderImage';
 

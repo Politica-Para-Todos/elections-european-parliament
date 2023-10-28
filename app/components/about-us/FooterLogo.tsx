@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import footer_logo from '../../../public/vertical_logo.jpg';
 

@@ -1,5 +1,3 @@
-'use client';
-
 import { EmailSvgIcon, FacebookSvgIcon, GithubSvgIcon, InstagramSvgIcon, MediumSvgIcon, TwitterSvgIcon } from './SvgIcons';
 
 export interface OnlinePlatform {

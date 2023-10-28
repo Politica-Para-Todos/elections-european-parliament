@@ -1,5 +1,3 @@
-'use client';
-
 import { Footer } from 'antd/es/layout/layout';
 import Link from "next/link";
 import SocialSharing from '../social/SocialSharing';
