@@ -1,17 +1,15 @@
-'use client';
+import { ConfigProvider } from 'antd';
+import { Content } from 'antd/es/layout/layout';
+import HomePoliticalGroups from './components/political-group/PoliticalGroup';
 
-import { Layout } from 'antd';
-import LayoutFooter from './components/footer/BaseFooter';
-import HomePoliticalGroups from './components/political-group/politicalGroup';
 
 export default function HomePage() {
   return (
-    <>
-      <Layout.Content>
+    <ConfigProvider>
+      <Content>
         <HomePoliticalGroups />
-      </Layout.Content>
-      <LayoutFooter />
-    </>
+      </Content>
+    </ConfigProvider>
   )
 }
 
