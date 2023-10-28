@@ -1,19 +1,19 @@
 import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
 import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroup } from '../../political-groups/[acronym]/political-group-dto';
-import RoundAvatar from './Avatar';
+import PoliticalGroupCard from './PoliticalGroupCard';
 
-interface AvatarListProp {
+interface CardsListProps {
   theme: string
 }
 
-export default async function AvatarList({ theme }: AvatarListProp) {
+export default async function CardsList({ theme }: CardsListProps) {
   const politicalGroups = await getAllPoliticalGroups();
 
   return (
     <div className={`avatar-list-container avatar-list-container avatar-list-container--${theme}`}>
       {politicalGroups.map(pg => (
-        <RoundAvatar key={pg.id} politicalGroup={pg} />
+        <PoliticalGroupCard key={pg.id} politicalGroup={pg} />
       ))}
     </div>
   );

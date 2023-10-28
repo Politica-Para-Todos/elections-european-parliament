@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import AvatarList from '../avatar/AvatarList';
+import CardsList from '../cards/CardsList';
 
 export default function HomePoliticalGroups() {
   return (
@@ -11,7 +11,7 @@ export default function HomePoliticalGroups() {
               <h2>Political Groups</h2>
             </Col>
           </Row>
-          <AvatarList theme={"4x3"} />
+          <CardsList theme={'4x3'} />
         </Col>
       </Row>
     </section>
