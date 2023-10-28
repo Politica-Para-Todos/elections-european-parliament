@@ -1,5 +1,3 @@
-'use client';
-
 import { Layout } from 'antd';
 import LayoutFooter from '../components/footer/BaseFooter';
 
