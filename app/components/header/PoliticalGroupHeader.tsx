@@ -1,28 +1,15 @@
-import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, Col, Divider, Row } from 'antd';
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
-import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
-import { PoliticalGroup, PoliticalGroupEnum, PoliticalGroupEnumUrl } from '../../political-groups/[acronym]/political-group-dto';
-import { convertPoliticalGroupAcronymToUrl } from '../../utils/converter';
 import SocialSharing from '../social/SocialSharing';
 
-interface ProfileHeaderProps {
-  politicalGroupAcronym: PoliticalGroupEnumUrl,
+interface PoliticalGroupHeaderProps {
+  entity: any,
   subtitle: string
 }
 
-export default async function ProfileHeader({ politicalGroupAcronym, subtitle }: ProfileHeaderProps) {
-  const politicalGroup = await getPoliticalGroupBy(politicalGroupAcronym);
-
-  if (!politicalGroup) {
-    return null;
-  }
-
-  const { acronym, name, logoUrl } = politicalGroup;
-  const hasManifesto = false;
-  const website = 'www';
+export default function PoliticalGroupHeader({ entity, subtitle }: PoliticalGroupHeaderProps) {
+  const { acronym, name, hasManifesto, logoUrl, website } = entity;
 
   return (
     <section className='party-header'>
@@ -39,7 +26,7 @@ export default async function ProfileHeader({ politicalGroupAcronym, subtitle }:
       </Row>
       <Row typeof='flex' justify='center'>
         <Col>
-          <Avatar size={200} src={logoUrl} icon={<UserOutlined />} shape='square' />
+          <Avatar size={200} src={logoUrl} icon='user' />
           <div className='party-header__program-cta'>
             {hasManifesto && (
               <Button
@@ -77,24 +64,3 @@ export default async function ProfileHeader({ politicalGroupAcronym, subtitle }:
     </section>
   );
 };
-
-async function getPoliticalGroupBy(acronym: PoliticalGroupEnumUrl): Promise<PoliticalGroup | null> {
-  const spreadhseet = await getSpreadsheet(process.env.COMMON_DATA_SPREADHSEET_ID ?? '');
-  const politicalGroupSheet = await spreadhseet.sheetsByIndex[0].getRows();
-
-  const politicalGroup = politicalGroupSheet.filter(pg => {
-    const sheetAcronym = pg.get(SpreadsheetField.ACRONYM) as PoliticalGroupEnum;
-    return convertPoliticalGroupAcronymToUrl(sheetAcronym) === acronym;
-  })
-
-  if (!politicalGroup[0]) {
-    return null;
-  }
-
-  return {
-    id: 1,
-    acronym: politicalGroup[0].get(SpreadsheetField.ACRONYM),
-    name: politicalGroup[0].get(SpreadsheetField.NAME),
-    logoUrl: politicalGroup[0].get(SpreadsheetField.LOGO_URL)
-  }
-}
