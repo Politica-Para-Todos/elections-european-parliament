@@ -2,7 +2,7 @@ import Paragraph from 'antd/es/typography/Paragraph';
 import PartyCandidatesList from '../../../components/party/PartyCandidatesList';
 import PartyHeader from '../../../components/party/PartyHeader';
 import PartyIntro from '../../../components/party/PartyIntro';
-import { getSpreadsheet } from '../../../google-spreadsheet-client/spreadhseet';
+import { getSpreadsheet } from '../../../google-spreadsheet-client/api';
 import { MemberState, SpreadsheetField } from '../../../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroupEnum } from '../../../political-groups/[acronym]/political-group-dto';
 import { convertPartyAcronymToUrl } from '../../../utils/converter';

@@ -1,4 +1,4 @@
-import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
+import { getSpreadsheet } from '../../google-spreadsheet-client/api';
 import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroup } from '../../political-groups/[acronym]/political-group-dto';
 import RoundAvatar from './Avatar';
@@ -29,10 +29,4 @@ export async function getAllPoliticalGroups(): Promise<PoliticalGroup[]> {
     name: pg.get(SpreadsheetField.NAME),
     logoUrl: pg.get('LOGO_URL')
   }))
-  // return Promise.resolve([{
-  //   id: 1,
-  //   acronym: 'test-acronym',
-  //   name: 'test-name',
-  //   logoUrl: 'test-url'
-  // }])
 }

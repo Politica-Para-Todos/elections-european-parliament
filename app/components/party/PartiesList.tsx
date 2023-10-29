@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Title from 'antd/es/typography/Title';
-import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
+import { getSpreadsheet } from '../../google-spreadsheet-client/api';
 import { MemberState, SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { Party } from '../../parties/dto';
 import { PoliticalGroupEnum, PoliticalGroupEnumUrl } from '../../political-groups/[acronym]/political-group-dto';

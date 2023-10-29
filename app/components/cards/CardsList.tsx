@@ -1,4 +1,4 @@
-import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
+import { getSpreadsheet } from '../../google-spreadsheet-client/api';
 import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroup } from '../../political-groups/[acronym]/political-group-dto';
 import PoliticalGroupCard from './PoliticalGroupCard';

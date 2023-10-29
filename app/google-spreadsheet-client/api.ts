@@ -17,3 +17,10 @@ export function selectSpreadsheet(memberState: MemberState): string {
       throw new Error(`${memberState} does not exist.`);
   }
 }
+
+export const STATIC_URL_PATH = await getAllUrlStaticPath();
+
+async function getAllUrlStaticPath() {
+  const spreadhseet = await getSpreadsheet(process.env.COMMON_DATA_SPREADHSEET_ID ?? '');
+  return await spreadhseet.sheetsByIndex[2].getRows(); // all candidates spreadsheet
+}

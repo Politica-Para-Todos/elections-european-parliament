@@ -2,7 +2,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Button, Col, Divider, Row } from 'antd';
 import Link from 'next/link';
 import { Fragment } from 'react';
-import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
+import { getSpreadsheet } from '../../google-spreadsheet-client/api';
 import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroup, PoliticalGroupEnum, PoliticalGroupEnumUrl } from '../../political-groups/[acronym]/political-group-dto';
 import { convertPoliticalGroupAcronymToUrl } from '../../utils/converter';

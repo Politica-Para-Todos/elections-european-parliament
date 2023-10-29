@@ -1,6 +1,6 @@
 import ProfileHeader from '../../components/header/ProfileHeader';
 import PartiesList from '../../components/party/PartiesList';
-import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
+import { getSpreadsheet } from '../../google-spreadsheet-client/api';
 import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { convertPoliticalGroupAcronymToUrl } from '../../utils/converter';
 import { PoliticalGroupEnum, PoliticalGroupEnumUrl } from './political-group-dto';
