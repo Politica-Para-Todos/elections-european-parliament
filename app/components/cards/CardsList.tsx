@@ -29,10 +29,4 @@ export async function getAllPoliticalGroups(): Promise<PoliticalGroup[]> {
     name: pg.get(SpreadsheetField.NAME),
     logoUrl: pg.get('LOGO_URL')
   }))
-  // return Promise.resolve([{
-  //   id: 1,
-  //   acronym: 'test-acronym',
-  //   name: 'test-name',
-  //   logoUrl: 'test-url'
-  // }])
 }
