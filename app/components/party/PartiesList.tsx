@@ -1,13 +1,12 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Title from 'antd/es/typography/Title';
-import Link from 'next/link';
 import { getSpreadsheet } from '../../google-spreadsheet-client/spreadhseet';
 import { MemberState, SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import { Party } from '../../parties/dto';
 import { PoliticalGroupEnum, PoliticalGroupEnumUrl } from '../../political-groups/[acronym]/political-group-dto';
 import { convertPoliticalGroupAcronymToUrl } from '../../utils/converter';
+import PartiesAvatars from './PartiesAvatars';
 
 interface PartiesListProps {
   politicalGroupAcronym: PoliticalGroupEnumUrl;
@@ -30,40 +29,7 @@ export default async function PartiesList({ politicalGroupAcronym }: PartiesList
         </Col>
       </Row>
       <Row typeof='flex' className='party-candidates__list'>
-        {parties.map((party, index) =>
-          <Col
-            key={index}
-            span={12}
-            sm={8}
-            lg={6}
-            xl={4}
-            className='party-candidate'
-          >
-            <Link
-              className='avatar-list-item'
-              href={`/parties/${party.acronym.toLowerCase()}`}
-              legacyBehavior={false}
-            >
-              <div className='party-candidate__content'>
-                <Avatar
-                  size={120}
-                  icon={<UserOutlined />}
-                />
-                {party.name && (
-                  <>
-                    <Title
-                      className='party-candidate__content-title'
-                      level={3}
-                    >
-                      {party.name}
-                    </Title>
-                    {/* Flag - Member State */}
-                  </>
-                )}
-              </div>
-            </Link>
-          </Col>
-        )}
+        <PartiesAvatars parties={parties} />
       </Row>
     </section >
   );

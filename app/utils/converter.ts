@@ -1,3 +1,4 @@
+import { MemberState } from '../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroupEnum, PoliticalGroupEnumUrl } from '../political-groups/[acronym]/political-group-dto';
 
 export function convertPoliticalGroupAcronymToUrl(acronym: PoliticalGroupEnum): PoliticalGroupEnumUrl {
@@ -44,4 +45,15 @@ export function convertPoliticalGroupUrlToAcronym(acronym: PoliticalGroupEnumUrl
     default:
       throw new Error(`${acronym} is not a valid Political Group url`);
   }
+}
+
+export function convertMemberStateToUrl(memberState: MemberState): string {
+  if (memberState === MemberState.CZECH_REPUBLIC) {
+    return memberState.toLowerCase().replace(' ', '-');
+  }
+  return memberState.toLowerCase();
+}
+
+export function convertPartyAcronymToUrl(acronym: string): string {
+  return acronym.toLowerCase().replaceAll('/', '-');
 }

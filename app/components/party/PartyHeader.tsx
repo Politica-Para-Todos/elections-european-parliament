@@ -1,22 +1,17 @@
 import { Avatar, Button, Col, Divider, Row } from 'antd';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import { Party } from '../../parties/dto';
 import SocialSharing from '../social/SocialSharing';
 
 interface PartyHeaderProps {
-  party: {
-    acronym: string,
-    name: string,
-    hasManifesto: boolean,
-    logoUrl: string,
-    website: string
-  }
+  party: Party
   subtitle: string;
 }
 
 export default function PartyHeader({ party, subtitle }: PartyHeaderProps) {
-  const { acronym, name, hasManifesto, logoUrl, website } = party;
-
+  const { acronym, name, logoUrl, website } = party;
+  const hasManifesto = false;
   return (
     <section className='party-header'>
       <Row>
