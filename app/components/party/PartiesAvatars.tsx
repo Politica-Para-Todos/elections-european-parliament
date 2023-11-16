@@ -13,7 +13,7 @@ export default function PartiesAvatars({ parties }: PartiesAvatarsProps) {
   return (
     <>
       {parties.map((party, index) => {
-        const { name } = party;
+        const { name, logoUrl, memberState } = party;
         const memberStateUrl = convertMemberStateToUrl(party.memberState);
         const acronymUrl = convertPartyAcronymToUrl(party.acronym);
 
@@ -35,6 +35,8 @@ export default function PartiesAvatars({ parties }: PartiesAvatarsProps) {
                 <Avatar
                   size={120}
                   icon={<UserOutlined />}
+                  shape='square'
+                  src={logoUrl}
                 />
                 {name && (
                   <>
@@ -42,9 +44,8 @@ export default function PartiesAvatars({ parties }: PartiesAvatarsProps) {
                       className='party-candidate__content-title'
                       level={3}
                     >
-                      {name}
+                      {`${name} - ${memberState}`}
                     </Title>
-                    {/* Flag - Member State */}
                   </>
                 )}
               </div>

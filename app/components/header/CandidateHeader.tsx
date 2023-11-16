@@ -1,17 +1,20 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Col, Divider, Row } from 'antd';
 import { Fragment } from 'react';
-import { Candidate } from '../../candidates/dto';
+import { getSpreadsheet } from '../../google-spreadsheet-client/api';
+import { MemberState, SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
 import SocialSharing from '../social/SocialSharing';
 
 interface CandidateHeaderProps {
-  candidate: Candidate
-  subtitle: string;
+  memberState: MemberState,
+  partyAcronym: string,
+  listNumber: number
 }
 
-export default function CandidateHeader({ candidate }: CandidateHeaderProps) {
+export default async function CandidateHeader({ memberState, partyAcronym, listNumber }: CandidateHeaderProps) {
+  const candidate: Candidate = await getCandidate(memberState, partyAcronym, listNumber);
   const { bio, shortName, fullName, photoUrl } = candidate;
-  const hasManifesto = false;
+
   return (
     <section className='party-header'>
       <Row>
@@ -48,3 +51,35 @@ export default function CandidateHeader({ candidate }: CandidateHeaderProps) {
     </section>
   );
 };
+
+export async function getCandidate(memberState: MemberState, partyAcronym: string, listNumber: number): Promise<Candidate> {
+  // TODO: get spreadsheet id based on member state
+  // const spreadsheetId = await getSpreadsheetIdByMemberState(memberState);
+  const spreadhseet = await getSpreadsheet(process.env.COMMON_DATA_SPREADHSEET_ID ?? 'spreadsheetId');
+  const candidates = await spreadhseet.sheetsByIndex[2].getRows();
+
+  const candidate = candidates.filter(candidate =>
+    candidate.get(SpreadsheetField.PARTY_ACRONYM) === partyAcronym.toUpperCase() &&
+    (candidate.get(SpreadsheetField.LIST_NUMBER) as number) === listNumber
+  )[0];
+
+  return {
+    listNumber: candidate.get(SpreadsheetField.LIST_NUMBER),
+    shortName: candidate.get(SpreadsheetField.SHORT_NAME),
+    fullName: candidate.get(SpreadsheetField.FULL_NAME),
+    bio: candidate.get(SpreadsheetField.BIO),
+    photoUrl: candidate.get(SpreadsheetField.PHOTO_URL),
+    memberState: candidate.get(SpreadsheetField.MEMBER_STATE),
+    partyAcronym: candidate.get(SpreadsheetField.PARTY_ACRONYM)
+  };
+}
+
+export interface Candidate {
+  listNumber: number,
+  shortName: string,
+  fullName: string,
+  photoUrl: string,
+  bio: string,
+  memberState: MemberState,
+  partyAcronym: string
+}

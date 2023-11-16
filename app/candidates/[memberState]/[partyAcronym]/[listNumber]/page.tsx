@@ -1,5 +1,6 @@
+import CandidateHeader from '../../../../components/header/CandidateHeader';
 import { STATIC_URL_PATH } from '../../../../google-spreadsheet-client/api';
-import { SpreadsheetField } from '../../../../google-spreadsheet-client/spreadhseet-types';
+import { MemberState, SpreadsheetField } from '../../../../google-spreadsheet-client/spreadhseet-types';
 
 interface CandidatePageProps {
   params: {
@@ -10,10 +11,12 @@ interface CandidatePageProps {
 }
 
 export default function CandidatePage({ params }: CandidatePageProps) {
+  const memberState = params.memberState as MemberState;
+  const { partyAcronym, listNumber } = params;
+
   return (
     <>
-      <h1>Candidate Header</h1>
-      {/* <CandidateHeader /> */}
+      <CandidateHeader memberState={memberState} partyAcronym={partyAcronym} listNumber={listNumber} />
     </>
   );
 }
