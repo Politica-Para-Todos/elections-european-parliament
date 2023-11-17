@@ -10,7 +10,8 @@ export const SpreadsheetField = {
   MEMBER_STATE: 'MEMBER_STATE',
   LIST_NUMBER: 'LIST_NUMBER',
   PARTY_ACRONYM: 'PARTY_ACRONYM',
-  PHOTO_URL: 'PHOTO_URL'
+  PHOTO_URL: 'PHOTO_URL',
+  BIO: 'BIO'
 } as const;
 type SpreadhseetFieldObjectValues<T> = T[keyof T];
 export type SpreadsheetField = SpreadhseetFieldObjectValues<typeof SpreadsheetField>
