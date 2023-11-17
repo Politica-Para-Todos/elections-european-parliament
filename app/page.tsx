@@ -4,6 +4,7 @@ import HomePoliticalGroups from './components/political-group/PoliticalGroup';
 
 
 export default function HomePage() {
+  console.log('ENV:', process.env.NODE_ENV);
   return (
     <ConfigProvider>
       <Content>
