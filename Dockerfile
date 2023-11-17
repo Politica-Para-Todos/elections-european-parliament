@@ -1,14 +1,22 @@
-FROM oven/bun:alpine
+FROM oven/bun:alpine as base
 
 WORKDIR /app
 
 ENV NODE_ENV=production
 
-COPY package.json yarn.lock /app/
+FROM base as deps
 
-COPY . /app
+COPY package.json bun.lockb ./
 
 RUN bun install
+
+FROM node:18 as build
+
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
+
+COPY . .
 
 EXPOSE 3000
 
