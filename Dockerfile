@@ -71,25 +71,20 @@
 
 FROM imbios/bun-node:18-slim AS base
 
+WORKDIR /nextjs
+
 ARG DEBIAN_FRONTEND=noninteractive
 ARG COMMON_DATA_SPREADHSEET_ID
 ARG GOOGLE_SERVICE_ACCOUNT_EMAIL
 ARG GOOGLE_PRIVATE_KEY
 
-# ENV COMMON_DATA_SPREADHSEET_ID=${COMMON_DATA_SPREADHSEET_ID}
-# ENV GOOGLE_SERVICE_ACCOUNT_EMAIL=${GOOGLE_SERVICE_ACCOUNT_EMAIL}
-# ENV GOOGLE_PRIVATE_KEY=${GOOGLE_PRIVATE_KEY}
-
-# I use Asia/Jakarta as my timezone, you can change it to your timezone
-# RUN apt-get -y update && \
-# apt-get install -yq openssl git ca-certificates tzdata && \
-# ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && \
-# dpkg-reconfigure -f noninteractive tzdata
-WORKDIR /nextjs-app
+ENV COMMON_DATA_SPREADHSEET_ID=${COMMON_DATA_SPREADHSEET_ID}
+ENV GOOGLE_SERVICE_ACCOUNT_EMAIL=${GOOGLE_SERVICE_ACCOUNT_EMAIL}
+ENV GOOGLE_PRIVATE_KEY=${GOOGLE_PRIVATE_KEY}
 
 FROM base as deps
 
-WORKDIR /nextjs-app
+WORKDIR /nextjs
 
 # Install dependencies based on the preferred package manager
 COPY package.json bun.lockb ./
@@ -98,7 +93,7 @@ RUN bun install
 # Build the app
 FROM deps AS builder
 
-WORKDIR /nextjs-app
+WORKDIR /nextjs
 
 COPY . .
 RUN bun run build
@@ -106,13 +101,14 @@ RUN bun run build
 # Production image, copy all the files and run next
 FROM node:18-slim AS runner
 
-WORKDIR /nextjs-app
+WORKDIR /nextjs
 
 # ARG CONFIG_FILE
 # COPY $CONFIG_FILE ./.env
 ENV NODE_ENV production
 
-COPY --from=builder /.next/standalone ./
+COPY --from=builder /nextjs/.next/standalone ./
+COPY --from=builder /nextjs/.next/static ./.next/static
 
 EXPOSE 3000
 
