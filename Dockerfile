@@ -119,4 +119,5 @@ ENV NEXT_TELEMETRY_DISABLED 1
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+# CMD ["node", "server.js"]
+CMD ["node", "next", "start"]
