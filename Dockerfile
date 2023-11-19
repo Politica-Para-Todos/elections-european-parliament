@@ -101,21 +101,21 @@ FROM deps AS builder
 WORKDIR /nextjs-app
 
 COPY . .
-RUN bun run build
+# RUN bun run build
 
 # Production image, copy all the files and run next
 FROM node:18-slim AS runner
 
 WORKDIR /nextjs-app
 
-ARG CONFIG_FILE
-COPY $CONFIG_FILE ./.env
+# ARG CONFIG_FILE
+# COPY $CONFIG_FILE ./.env
 ENV NODE_ENV production
 
 # Uncomment the following line in case you want to disable telemetry during runtime.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-COPY --from=builder /nextjs-app/.next/standalone ./
+# COPY --from=builder /nextjs-app/.next/standalone ./
 
 EXPOSE 3000
 
