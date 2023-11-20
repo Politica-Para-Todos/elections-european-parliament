@@ -19,6 +19,10 @@ export default async function PartyPage({ params }: PartyPageProp) {
   const acronym = decodeURIComponent(params.acronym) as string;
   const { memberState } = params;
   const party = await getParty(acronym, memberState);
+
+  if (!party) {
+    return null;
+  }
   const { description } = party;
 
   return (
@@ -45,8 +49,8 @@ async function getAllMemberStatesAndParties(): Promise<{ memberState: string, ac
   const parties = await spreadhseet.sheetsByIndex[1].getRows();
 
   return parties.map(p => ({
-    memberState: p.get(SpreadsheetField.MEMBER_STATE),
-    acronym: p.get(SpreadsheetField.ACRONYM)
+    memberState: (p.get(SpreadsheetField.MEMBER_STATE) as string).toLowerCase(),
+    acronym: (p.get(SpreadsheetField.ACRONYM) as string).toLowerCase()
   }))
 }
 
