@@ -13,7 +13,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "if [ $COMMON_DATA_SPREADHSEET_ID ]; then yarn postinstall-tools-for-democracy; elif [ $EXPRESS_PORT ]; then yarn postinstall-drive-notifications; else echo no environment detected, please set vars; fi",
+    "postinstall-tools-for-democracy": "yarn install",
+    "postinstall-drive-notifications": "cd services/drive-notifications && yarn install"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",
