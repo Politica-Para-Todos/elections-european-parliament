@@ -6,10 +6,13 @@
     "node": "18.14.2",
     "yarn": "1.22.18"
   },
+  "workspaces": [
+    "services/*"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
