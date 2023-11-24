@@ -14,7 +14,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall-drive-notifications": "cd services/drive-notifications && yarn install"
+    "postinstall": "cd services/drive-notifications && yarn install"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",
