@@ -1,43 +1,22 @@
 {
-  "name": "elections-european-parliament",
+  "name": "tools-for-democracy",
   "version": "0.1.0",
   "private": true,
+  "repository": "https://github.com/Politica-Para-Todos/elections-european-parliament",
+  "author": "jopijuco <jpjc@protonmail.com>",
+  "license": "MIT",
   "engines": {
     "node": "18.14.2",
     "yarn": "1.22.18"
   },
-  "workspaces": [
-    "services/*"
-  ],
+  "workspaces": {
+    "services": [
+      "services/*"
+    ]
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "postinstall": "cd services/drive-notifications && yarn install"
-  },
-  "dependencies": {
-    "@ant-design/cssinjs": "^1.17.2",
-    "@ant-design/icons": "^5.2.6",
-    "@prisma/client": "^5.4.1",
-    "antd": "^5.10.2",
-    "autoprefixer": "^10.4.16",
-    "google-auth-library": "^9.1.0",
-    "google-spreadsheet": "^4.1.0",
-    "next": "13.5.4",
-    "prisma": "^5.4.1",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "@types/node": "^20.9.2",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "13.5.4",
-    "postcss": "^8",
-    "sass": "^1.69.4",
-    "tailwindcss": "^3",
-    "typescript": "^5"
+    "postinstall": "if [ $GOOGLE_SERVICE_ACCOUNT_EMAIL ]; then npm run postinstall-european-parliament-elections; elif [ $EXPRESS_PORT ]; then npm run postinstall-drive-notifications; else echo no environment detected, please set CLIENT_ENV or SERVER_ENV; fi",
+    "postinstall-european-parliament-elections": "cd services/european-parliament-elections && yarn install",
+    "postinstall-drive-notifications": "cd services/drive-notifications && yarn install"
   }
 }
