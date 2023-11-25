@@ -15,7 +15,7 @@
     ]
   },
   "scripts": {
-    "postinstall": "if [ $IS_EEP ]; then yarn postinstall-european-parliament-elections; elif [ $IS_DN ]; then yarn postinstall-drive-notifications; else echo no environment detected, please set IS_EEP or IS_DN; fi",
+    "postinstall": "if [ $IS_EPE ]; then yarn postinstall-european-parliament-elections; elif [ $IS_DN ]; then yarn postinstall-drive-notifications; else echo No environment variable detected, please set IS_EPE or IS_DN; fi",
     "postinstall-european-parliament-elections": "cd services/european-parliament-elections && yarn install",
     "postinstall-drive-notifications": "cd services/drive-notifications && yarn install"
   }
