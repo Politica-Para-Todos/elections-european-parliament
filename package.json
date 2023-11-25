@@ -15,8 +15,8 @@
     ]
   },
   "scripts": {
-    "postinstall": "if [ $POST_INSTALL_TFD ]; then npm run postinstall-european-parliament-elections; elif [ $POST_INSTALL_DN ]; then npm run postinstall-drive-notifications; else echo no environment detected, please set CLIENT_ENV or SERVER_ENV; fi",
-    "postinstall-european-parliament-elections": "cd services/european-parliament-elections && yarn install",
+    "postinstall": "if [ $POST_INSTALL_TFD ]; then yarn postinstall-elections-european-parliament; elif [ $POST_INSTALL_DN ]; then yarn postinstall-drive-notifications; else echo no environment detected, please set CLIENT_ENV or SERVER_ENV; fi",
+    "postinstall-elections-european-parliament": "cd services/european-parliament-elections && yarn install",
     "postinstall-drive-notifications": "cd services/drive-notifications && yarn install"
   }
 }
