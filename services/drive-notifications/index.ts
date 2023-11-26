@@ -9,6 +9,12 @@ app
     console.log('Server listening...');
   });
 
+app.get('/status', (req, res) => {
+  res.send({
+    "status": "OK"
+  })
+})
+
 app.post('/sheet-notifications', (req, resp) => {
   resp.send(req.body);
 });
