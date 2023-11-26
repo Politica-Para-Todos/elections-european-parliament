@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "npx nodemon index.ts",
-    "build": "tsc",
-    "start": "node build/index.js"
+    "start": "tsc && node build/index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
