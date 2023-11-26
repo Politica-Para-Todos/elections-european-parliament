@@ -1,1 +1,1 @@
-yarn start
+node next start -p $PORT
