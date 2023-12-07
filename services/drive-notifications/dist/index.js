@@ -12,12 +12,12 @@ app
     .listen(PORT, () => {
     console.log('Server listening...');
 });
-app.get('/status', (req, res) => {
+app.get('/', (req, res) => {
     res.send({
         "status": "OK"
     });
 });
-app.post('/sheet-notifications', (req, resp) => {
+app.post('/notifications', (req, resp) => {
     resp.send(req.body);
 });
 exports.default = app;
