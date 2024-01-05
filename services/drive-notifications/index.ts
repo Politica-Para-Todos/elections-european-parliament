@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.post('/notifications', (req, resp) => {
+  console.log(req.body);
   resp.send(req.body);
 });
 

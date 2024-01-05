@@ -6,8 +6,8 @@
   "author": "jopijuco <jpjc@protonmail.com>",
   "license": "MIT",
   "engines": {
-    "node": "18.14.2",
-    "yarn": "1.22.18"
+    "node": "18.19.0",
+    "yarn": "1.22.21"
   },
   "workspaces": [
     "services/*"
