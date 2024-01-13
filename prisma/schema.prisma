@@ -10,81 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Election {
-  id              BigInt    @id
-  year            Int
-  month           Int
-  days            Int[]
-  memberStates    MemberState[]
-  politicalGroups PoliticalGroup[]
-  parties         Party[]
-  candidates      Candidate[]
-}
+model Candidate {
+  id        Int      @id
+  shortName String
+  fullName  String?
+  birthdate DateTime @db.Date()
 
-model ElectoralSystem {
-  id          BigInt       @id
-  name        String
-  memberState MemberState?
-}
-
-model CandidateSelection {
-  id          BigInt       @id
-  name        String
-  memberState MemberState?
-}
-
-model AbsenteeVoting {
-  id          BigInt       @id
-  type        String
-  memberState MemberState?
+  memberStateId Int
+  memberState   MemberState @relation(fields: [memberStateId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model MemberState {
-  id                   BigInt              @id
-  name                 String
-  seats                Int
-  votingAge            Int
-  electionDate         String // 7-9 | 8 | null
-  compulsoryVoting     Boolean
-  absenteeVoting       AbsenteeVoting?     @relation(fields: [absenteeVotingId], references: [id])
-  absenteeVotingId     BigInt?             @unique
-  constituencies       Int
-  electoralSystem      ElectoralSystem?    @relation(fields: [electoralSystemId], references: [id], onDelete: SetNull)
-  electoralSystemId    BigInt?             @unique
-  candidateSelection   CandidateSelection? @relation(fields: [candidateSelectionId], references: [id], onDelete: SetNull)
-  candidateSelectionId BigInt?             @unique
-  parties              Party[]
-  election             Election            @relation(fields: [electionId], references: [id], onDelete: Cascade)
-  electionId           BigInt
-}
+  id        Int      @id
+  name      String
+  startDate DateTime @db.Date()
 
-model PoliticalGroup {
-  id            BigInt   @id
-  name          String
-  election      Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
-  electionId    BigInt
-}
-
-model Party {
-  id            BigInt      @id
-  acronym       String
-  name          String
-  candidates    Candidate[]
-  memberState   MemberState @relation(fields: [memberStateId], references: [id], onDelete: Cascade)
-  memberStateId BigInt
-  election      Election    @relation(fields: [electionId], references: [id], onDelete: Cascade)
-  electionId    BigInt
-}
-
-model Candidate {
-  id              BigInt   @id
-  shortName       String
-  fullName        String
-  isLeadCandidate Boolean
-  bio             String? // probabbly limit the length
-  profilePic      String? // probably limit the length
-  party           Party    @relation(fields: [partyId], references: [id], onDelete: Cascade)
-  partyId         BigInt
-  election        Election @relation(fields: [electionId], references: [id], onDelete: Cascade)
-  electionId      BigInt
+  candidates Candidate[]
 }

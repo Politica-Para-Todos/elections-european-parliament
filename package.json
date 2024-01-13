@@ -1,15 +1,35 @@
 {
-  "name": "tools-for-democracy",
+  "name": "european-parliament-elections",
   "version": "0.1.0",
   "private": true,
-  "repository": "https://github.com/Politica-Para-Todos/tools-for-democracy",
-  "author": "jopijuco <jpjc@protonmail.com>",
-  "license": "MIT",
-  "engines": {
-    "node": "18.19.0",
-    "yarn": "1.22.21"
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "lint": "next lint"
   },
-  "workspaces": [
-    "services/*"
-  ]
+  "dependencies": {
+    "@ant-design/cssinjs": "^1.17.2",
+    "@ant-design/icons": "^5.2.6",
+    "@prisma/client": "^5.4.1",
+    "antd": "^5.10.2",
+    "autoprefixer": "^10.4.16",
+    "google-auth-library": "^9.1.0",
+    "google-spreadsheet": "^4.1.0",
+    "next": "13.5.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.2",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4",
+    "postcss": "^8",
+    "prisma": "^5.8.0",
+    "sass": "^1.69.4",
+    "tailwindcss": "^3",
+    "typescript": "^5"
+  }
 }
