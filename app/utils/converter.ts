@@ -1,4 +1,3 @@
-import { MemberState } from '../google-spreadsheet-client/spreadhseet-types';
 import { PoliticalGroupEnum, PoliticalGroupEnumUrl } from '../political-groups/[acronym]/political-group-dto';
 
 export function convertPoliticalGroupAcronymToUrl(acronym: PoliticalGroupEnum): PoliticalGroupEnumUrl {
@@ -47,8 +46,8 @@ export function convertPoliticalGroupUrlToAcronym(acronym: PoliticalGroupEnumUrl
   }
 }
 
-export function convertMemberStateToUrl(memberState: MemberState): string {
-  if (memberState === MemberState.CZECH_REPUBLIC) {
+export function convertMemberStateToUrl(memberState: string): string {
+  if (memberState === 'CZECH REPUBLIC') {
     return memberState.toLowerCase().replace(' ', '-');
   }
   return memberState.toLowerCase();

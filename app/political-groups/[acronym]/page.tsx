@@ -1,9 +1,6 @@
 import ProfileHeader from '../../components/header/ProfileHeader';
 import PartiesList from '../../components/party/PartiesList';
-import { getSpreadsheet } from '../../google-spreadsheet-client/api';
-import { SpreadsheetField } from '../../google-spreadsheet-client/spreadhseet-types';
-import { convertPoliticalGroupAcronymToUrl } from '../../utils/converter';
-import { PoliticalGroupEnum, PoliticalGroupEnumUrl } from './political-group-dto';
+import { PoliticalGroupEnumUrl } from './political-group-dto';
 
 interface PoliticalGroupProp {
   params: {
@@ -25,13 +22,13 @@ export default async function PoliticalGroupPage({ params }: PoliticalGroupProp)
   )
 }
 
-export async function generateStaticParams(): Promise<PoliticalGroupEnumUrl[]> {
-  return await getAllPoliticalGroupsAcronyms();
-}
+// export async function generateStaticParams(): Promise<PoliticalGroupEnumUrl[]> {
+//   return await getAllPoliticalGroupsAcronyms();
+// }
 
-async function getAllPoliticalGroupsAcronyms(): Promise<PoliticalGroupEnumUrl[]> {
-  const spreadhseet = await getSpreadsheet(process.env.COMMON_DATA_SPREADHSEET_ID ?? '');
-  const politicalGroupSheet = await spreadhseet.sheetsByIndex[0].getRows();
+// async function getAllPoliticalGroupsAcronyms(): Promise<PoliticalGroupEnumUrl[]> {
+//   const spreadhseet = await getSpreadsheet(process.env.COMMON_DATA_SPREADHSEET_ID ?? '');
+//   const politicalGroupSheet = await spreadhseet.sheetsByIndex[0].getRows();
 
-  return politicalGroupSheet.map(pg => convertPoliticalGroupAcronymToUrl(pg.get(SpreadsheetField.ACRONYM) as PoliticalGroupEnum))
-}
+//   return politicalGroupSheet.map(pg => convertPoliticalGroupAcronymToUrl(pg.get(SpreadsheetField.ACRONYM) as PoliticalGroupEnum))
+// }

@@ -1,6 +1,4 @@
 import CandidateHeader from '../../../../components/header/CandidateHeader';
-import { STATIC_URL_PATH } from '../../../../google-spreadsheet-client/api';
-import { MemberState, SpreadsheetField } from '../../../../google-spreadsheet-client/spreadhseet-types';
 
 interface CandidatePageProps {
   params: {
@@ -11,7 +9,7 @@ interface CandidatePageProps {
 }
 
 export default function CandidatePage({ params }: CandidatePageProps) {
-  const memberState = params.memberState as MemberState;
+  const memberState = params.memberState;
   const { partyAcronym, listNumber } = params;
 
   return (
@@ -21,10 +19,10 @@ export default function CandidatePage({ params }: CandidatePageProps) {
   );
 }
 
-export async function generateStaticParams(): Promise<any> {
-  return STATIC_URL_PATH.map(candidate => ({
-    memberState: (candidate.get(SpreadsheetField.MEMBER_STATE) as string).toLowerCase(),
-    partyAcronym: (candidate.get(SpreadsheetField.PARTY_ACRONYM) as string).toLowerCase(),
-    listNumber: (candidate.get(SpreadsheetField.LIST_NUMBER) as number)
-  }));
-}
+// export async function generateStaticParams(): Promise<any> {
+//   return STATIC_URL_PATH.map(candidate => ({
+//     memberState: (candidate.get(SpreadsheetField.MEMBER_STATE) as string).toLowerCase(),
+//     partyAcronym: (candidate.get(SpreadsheetField.PARTY_ACRONYM) as string).toLowerCase(),
+//     listNumber: (candidate.get(SpreadsheetField.LIST_NUMBER) as number)
+//   }));
+// }

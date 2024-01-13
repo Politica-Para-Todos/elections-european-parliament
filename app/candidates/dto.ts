@@ -1,4 +1,4 @@
-import { MemberState } from '../google-spreadsheet-client/spreadhseet-types'
+import { MemberState } from '@prisma/client';
 
 export interface Candidate {
   id: number,

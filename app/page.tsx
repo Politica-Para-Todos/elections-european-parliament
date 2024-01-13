@@ -11,5 +11,3 @@ export default function HomePage() {
     </ConfigProvider>
   )
 }
-
-//"dev": "docker compose up -d && bunx prisma generate && bunx prisma migrate dev && next dev",

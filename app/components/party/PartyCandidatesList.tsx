@@ -1,7 +1,6 @@
 import { Col, Row } from 'antd';
 import Paragraph from 'antd/es/typography/Paragraph';
 import Title from 'antd/es/typography/Title';
-import { MemberState } from '../../google-spreadsheet-client/spreadhseet-types';
 import CandidatesAvatars from '../candidate/CandidatesAvatars';
 
 interface PartyCandidatesListProps {
@@ -24,7 +23,7 @@ export default async function PartyCandidatesList({ acronym }: PartyCandidatesLi
         </Col>
       </Row>
       <Row typeof='flex' className='party-candidates__list'>
-        <CandidatesAvatars partyAcronym={acronym} memberState={MemberState.PORTUGAL} />
+        <CandidatesAvatars partyAcronym={acronym} memberState={'PORTUGAL'} />
       </Row>
     </section >
   );
