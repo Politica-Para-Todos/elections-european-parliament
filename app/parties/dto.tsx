@@ -1,4 +1,3 @@
-import { MemberState } from '../google-spreadsheet-client/spreadhseet-types'
 import { PoliticalGroupEnum } from '../political-groups/[acronym]/political-group-dto'
 
 export interface Party {
@@ -8,6 +7,6 @@ export interface Party {
   logoUrl: string,
   website: string,
   description: string,
-  memberState: MemberState,
+  memberState: any,
   politicalGroupAcronym: PoliticalGroupEnum
 }

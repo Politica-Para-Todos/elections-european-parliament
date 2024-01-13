@@ -1,7 +1,7 @@
 import { MemberState } from '@prisma/client';
 
 interface CandidateHeaderProps {
-  memberState: MemberState,
+  memberState: string,
   partyAcronym: string,
   listNumber: number
 }
