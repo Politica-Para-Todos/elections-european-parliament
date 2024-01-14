@@ -10,20 +10,106 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Candidate {
-  id        Int      @id
-  shortName String
-  fullName  String?
-  birthdate DateTime @db.Date()
-
-  memberStateId Int
-  memberState   MemberState @relation(fields: [memberStateId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model Election {
+  year  Int   @id @db.SmallInt
+  month Int   @db.SmallInt
+  days  Int[] @db.SmallInt
 }
 
 model MemberState {
-  id        Int      @id
-  name      String
-  startDate DateTime @db.Date()
+  id                 String              @id @default(uuid())
+  name               Country             @unique
+  seats              Int?                @db.SmallInt
+  electionDate       DateTime[]          @db.Date
+  votingAge          Int?                @db.SmallInt
+  compulsoryVoting   Boolean?
+  candidacyAge       Int?                @db.SmallInt
+  constituencies     Int?                @db.SmallInt
+  threshold          Int?                @db.SmallInt
+  electoralSystem    ElectoralSystem?
+  candidateSelection CandidateSelection?
+  PoliticalGroup     PoliticalGroup[]
+}
 
-  candidates Candidate[]
+model PoliticalGroup {
+  id            String                @id @default(uuid())
+  name          String
+  acronym       PoliticalGroupAcronym @unique
+  memberState   MemberState           @relation(fields: [memberStateId], references: [id])
+  memberStateId String
+  Party         Party[]
+}
+
+model Party {
+  id               String         @id @default(uuid())
+  name             String
+  acronym          String
+  politicalGroup   PoliticalGroup @relation(fields: [politicalGroupId], references: [id])
+  politicalGroupId String
+  Candidate        Candidate[]
+}
+
+model Candidate {
+  id        String   @id @default(uuid())
+  shortName String
+  fullName  String?
+  birthdate DateTime @db.Date()
+  party     Party    @relation(fields: [partyId], references: [id])
+  partyId   String
+}
+
+enum Country {
+  AUSTRIA
+  BELGIUM
+  BULGARIA
+  CROATIA
+  CYPRUS
+  CZECHIA
+  DENMARK
+  ESTONIA
+  FINLAND
+  FRANCE
+  GERMANY
+  GREECE
+  HUNGARY
+  IRELAND
+  ITALY
+  LATVIA
+  LITHUANIA
+  LUXEMBOURG
+  MALTA
+  NETHERLANDS
+  POLAND
+  PORTUGAL
+  ROMANIA
+  SLOVAKIA
+  SLOVENIA
+  SPAIN
+  SWEDEN
+}
+
+enum ElectoralSystem {
+  D_HONDT
+  LARGEST_REMAINDER
+  MODIFIED_SAINTE_LAGUE
+  SAINTE_LAGUE
+  SINGLE_TRANSFERABLE_VOTE
+}
+
+enum CandidateSelection {
+  CLOSED_LIST
+  OPEN_LIST
+  SEMI_OPEN_LIST
+  SINGLE_TRANSFERABLE_VOTE
+}
+
+enum PoliticalGroupAcronym {
+  EPP
+  S_D
+  RENEW
+  GREENS_EFA
+  ECR
+  ID
+  TL
+  NI
 }
