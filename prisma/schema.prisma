@@ -12,7 +12,7 @@ datasource db {
 
 model Election {
   year  Int   @id @db.SmallInt
-  month Int   @db.SmallInt
+  month Int?  @db.SmallInt
   days  Int[] @db.SmallInt
 }
 
@@ -20,7 +20,7 @@ model MemberState {
   id                 String              @id @default(uuid())
   name               Country             @unique
   seats              Int?                @db.SmallInt
-  electionDate       DateTime[]          @db.Date
+  electionDates      DateTime[]          @db.Date
   votingAge          Int?                @db.SmallInt
   compulsoryVoting   Boolean?
   candidacyAge       Int?                @db.SmallInt
@@ -28,34 +28,36 @@ model MemberState {
   threshold          Int?                @db.SmallInt
   electoralSystem    ElectoralSystem?
   candidateSelection CandidateSelection?
-  PoliticalGroup     PoliticalGroup[]
+  parties            Party[]
 }
 
 model PoliticalGroup {
-  id            String                @id @default(uuid())
-  name          String
-  acronym       PoliticalGroupAcronym @unique
-  memberState   MemberState           @relation(fields: [memberStateId], references: [id])
-  memberStateId String
-  Party         Party[]
+  id      String                @id @default(uuid())
+  name    String
+  acronym PoliticalGroupAcronym @unique
+  parties Party[]
 }
 
 model Party {
-  id               String         @id @default(uuid())
+  id               String          @id @default(uuid())
   name             String
   acronym          String
-  politicalGroup   PoliticalGroup @relation(fields: [politicalGroupId], references: [id])
-  politicalGroupId String
-  Candidate        Candidate[]
+  politicalGroup   PoliticalGroup? @relation(fields: [politicalGroupId], references: [id])
+  politicalGroupId String?
+  MemberState      MemberState?    @relation(fields: [memberStateId], references: [id])
+  memberStateId    String?
+  candidate        Candidate[]
 }
 
 model Candidate {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   shortName String
   fullName  String?
-  birthdate DateTime @db.Date()
-  party     Party    @relation(fields: [partyId], references: [id])
-  partyId   String
+  birthdate DateTime? @db.Date()
+  photoUrl  String?
+  bio       String?   @db.Text
+  party     Party?    @relation(fields: [partyId], references: [id])
+  partyId   String?
 }
 
 enum Country {
