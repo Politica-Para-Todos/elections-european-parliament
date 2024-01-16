@@ -17,24 +17,24 @@ model Election {
 }
 
 model MemberState {
-  id                 String              @id @default(uuid())
-  name               Country             @unique
-  seats              Int?                @db.SmallInt
-  electionDates      DateTime[]          @db.Date
-  votingAge          Int?                @db.SmallInt
+  id                 String     @id @default(uuid())
+  name               String     @unique
+  seats              Int?       @db.SmallInt
+  electionDates      DateTime[] @db.Date
+  votingAge          Int?       @db.SmallInt
   compulsoryVoting   Boolean?
-  candidacyAge       Int?                @db.SmallInt
-  constituencies     Int?                @db.SmallInt
-  threshold          Int?                @db.SmallInt
-  electoralSystem    ElectoralSystem?
-  candidateSelection CandidateSelection?
+  candidacyAge       Int?       @db.SmallInt
+  constituencies     Int?       @db.SmallInt
+  threshold          Int?       @db.SmallInt
+  electoralSystem    String?
+  candidateSelection String?
   parties            Party[]
 }
 
 model PoliticalGroup {
-  id      String                @id @default(uuid())
+  id      String  @id @default(uuid())
   name    String
-  acronym PoliticalGroupAcronym @unique
+  acronym String  @unique
   parties Party[]
 }
 
@@ -60,58 +60,58 @@ model Candidate {
   partyId   String?
 }
 
-enum Country {
-  AUSTRIA
-  BELGIUM
-  BULGARIA
-  CROATIA
-  CYPRUS
-  CZECHIA
-  DENMARK
-  ESTONIA
-  FINLAND
-  FRANCE
-  GERMANY
-  GREECE
-  HUNGARY
-  IRELAND
-  ITALY
-  LATVIA
-  LITHUANIA
-  LUXEMBOURG
-  MALTA
-  NETHERLANDS
-  POLAND
-  PORTUGAL
-  ROMANIA
-  SLOVAKIA
-  SLOVENIA
-  SPAIN
-  SWEDEN
-}
+// enum Country {
+//   AUSTRIA
+//   BELGIUM
+//   BULGARIA
+//   CROATIA
+//   CYPRUS
+//   CZECHIA
+//   DENMARK
+//   ESTONIA
+//   FINLAND
+//   FRANCE
+//   GERMANY
+//   GREECE
+//   HUNGARY
+//   IRELAND
+//   ITALY
+//   LATVIA
+//   LITHUANIA
+//   LUXEMBOURG
+//   MALTA
+//   NETHERLANDS
+//   POLAND
+//   PORTUGAL
+//   ROMANIA
+//   SLOVAKIA
+//   SLOVENIA
+//   SPAIN
+//   SWEDEN
+// }
 
-enum ElectoralSystem {
-  D_HONDT
-  LARGEST_REMAINDER
-  MODIFIED_SAINTE_LAGUE
-  SAINTE_LAGUE
-  SINGLE_TRANSFERABLE_VOTE
-}
+// enum ElectoralSystem {
+//   D_HONDT
+//   LARGEST_REMAINDER
+//   MODIFIED_SAINTE_LAGUE
+//   SAINTE_LAGUE
+//   SINGLE_TRANSFERABLE_VOTE
+// }
 
-enum CandidateSelection {
-  CLOSED_LIST
-  OPEN_LIST
-  SEMI_OPEN_LIST
-  SINGLE_TRANSFERABLE_VOTE
-}
+// enum CandidateSelection {
+//   CLOSED_LIST
+//   OPEN_LIST
+//   SEMI_OPEN_LIST
+//   SINGLE_TRANSFERABLE_VOTE
+// }
 
-enum PoliticalGroupAcronym {
-  EPP
-  S_D
-  RENEW
-  GREENS_EFA
-  ECR
-  ID
-  TL
-  NI
-}
+// enum PoliticalGroupAcronym {
+//   EPP
+//   S_D
+//   RENEW
+//   GREENS_EFA
+//   ECR
+//   ID
+//   TL
+//   NI
+// }
